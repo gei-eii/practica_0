@@ -7,12 +7,14 @@ Vagrant.configure("2") do |config|
 
   # evitamos actualizacións automáticas
   config.vm.box_check_update = false
-  config.vbguest.auto_update = false
 
-  # Activamos a opción de linked clones para optimizar o espazo usado polos discos
-  # As 3 VM comparten o disco dunha imaxe base e en cada unha só se almacenan os cambios
+  # Opcións do provedor VirtualBox
   config.vm.provider :virtualbox do |vb|
+    # Activamos a opción de linked clones para optimizar o espazo usado polos discos
+    # As 3 VM comparten o disco dunha imaxe base e en cada unha só se almacenan os cambios
     vb.linked_clone = true
+    # Desactivamos a comprobación das Guest Additions
+    vb.check_guest_additions = false
   end
 
   # Definición dos nós do cluster
